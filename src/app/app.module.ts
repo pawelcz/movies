@@ -1,18 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
 
 
-import { AppComponent } from './app.component';
-
+import { AppComponent } from './app.component'
+import { MoviesComponent } from './movies/movies.component'
+import { MoviesService } from './movies/movies.service'
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MoviesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [MoviesService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

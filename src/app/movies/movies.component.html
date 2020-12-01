@@ -1,0 +1,53 @@
+<nav class="navbar sticky-top navbar-light bg-light">
+  <a class="navbar-brand">Movies</a>
+  <form class="form-inline">
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <select class="custom-select mr-sm-2" name="selectedCountry" [(ngModel)]="selectedCountry" (change)="search()">
+          <option selected value="">Select Country...</option>
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+        <select class="custom-select mr-sm-2" name="selectedWriter" [(ngModel)]="selectedWriter" (change)="search()">
+          <option selected value="">Select Writer...</option>
+          <option *ngFor="let writer of writers" [value]="writer">{{writer}}</option>
+        </select>
+        <select class="custom-select mr-sm-2" name="selectedGenre" [(ngModel)]="selectedGenre" (change)="search()">
+          <option selected value="">Select Genre...</option>
+          <option *ngFor="let genre of genres" [value]="genre">{{genre}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</nav>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns" scope="col">{{column}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let movie of movies; index as i">
+      <tr class="movie-row" data-toggle="collapse" [attr.data-target]="'#movie_' + i" aria-expanded="false" aria-controls="movie_0 movie_1" (click)="collapse(i)" title="Click to expand">
+        <td>
+          <a [href]="movie.Poster" target="_blank">
+            <img [src]="movie.Poster" width="75" class="align-self-start mr-3" onerror="this.onerror=null; this.src='././assets/missing_poster.png';">
+          </a>
+        </td>
+        <td *ngFor="let column of columns | slice:1">{{movie[column]}}</td>
+      </tr>
+      <tr class="coll">
+        <td class="coll" [attr.colspan]="columns.length">
+          <div class="collapse" id="movie_{{i}}">
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let attribute of attributes" class="list-group-item">
+                <strong>{{attribute}}:</strong> {{movie[attribute]}}
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+

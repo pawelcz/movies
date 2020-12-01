@@ -1,0 +1,20 @@
+table thead th {
+  position: sticky;
+  top: 0;
+}
+tr.movie-row {
+  cursor: pointer;
+}
+
+td.coll, tr.coll {
+  padding: 0;
+  border: none;
+}
+
+tr.coll:hover {
+  background: none;
+}
+
+ul.list-group {
+  margin: 20px;
+}
